@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+    
+        <title>socket</title>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+          tailwind.config = {
+            theme: {
+              extend: {
+                colors: {
+                  custom: {
+                    header: "#306E42",
+                    text: "#3F941B",
+                    navBg: "#466E37",
+                    content: "#BAD9AE",
+                    boletos: "#202729",
+                    bol: "#458F4C",
+                  },
+                },
+              },
+            },
+          };
+        </script>
+    
+        <link rel="stylesheet" href="main.css" />
+      </head>
+<body>
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="w-full max-w-md">
+          <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h2 class="text-2xl font-bold mb-6">Iniciar sesión</h2>
+            <form>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                  Usuario
+                </label>
+                <input
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="username"
+                  type="text"
+                  placeholder="Nombre de usuario"
+                >
+              </div>
+              <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                  Contraseña
+                </label>
+                <input
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="password"
+                  type="password"
+                  placeholder="Contraseña"
+                >
+              </div>
+              <div class="flex items-center justify-between">
+                <button
+                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="button"
+                >
+                  Iniciar sesión
+                </button>
+                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                  ¿Olvidaste tu contraseña?
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    
+</body>
+</html>

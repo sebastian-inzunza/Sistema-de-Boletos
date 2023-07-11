@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <title>socket</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              custom: {
+                header: "#306E42",
+                text: "#3F941B",
+                navBg: "#466E37",
+                content: "#BAD9AE",
+                boletos: "#202729",
+                bol: "#458F4C",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header class="bg-custom-text text-stone-200 font-bold relative py-7">
+      <div class="container mx-auto md:flex md:justify-center">
+        <img
+          class="image-container hidden md:block"
+          src="img/logo.png"
+          alt="Logo"
+        />
+        <div class="bg-stone-800 md:flex md:w-full md:justify-end py-8">
+          <ul class="text-2xl md:flex m-2">
+            <li class="md:mr-20 border-b md:border-0">
+              <a
+                href="index.html"
+                class="block no-underline md:py-2 hover:text-custom-text cursor-pointer py-4 md:py-0 transition-all duration-300"
+                >Inicio</a
+              >
+            </li>
+            <!-- <li class="md:mr-20 border-b md:border-0">
+              
+              <a
+              
+              href="#preguntas"
+                class="block no-underline hover:text-custom-text cursor-pointer py-4 md:py-0 transition-all duration-300"
+                >Preguntas Frecuentes
+              </a>
+            </li>
+            <li class="md:mr-20 border-b md:border-0">
+              <a
+              href="#nosotros"
+                class="block no-underline hover:text-custom-text cursor-pointer py-4 md:py-0 transition-all duration-300"
+                >Nosotros</a
+              >
+            </li>
+
+            <li class="md:mr-20 border-b md:border-0">
+              <a
+              href="#contacto"
+                class="block no-underline hover:text-custom-text cursor-pointer py-4 md:py-0 transition-all duration-300"
+                >Contacto</a
+              >
+            </li> -->
+
+            <li class="md:mr-20 border-b md:border-0">
+              <a
+                href="listaBoletos.html"
+                class="border-2 md:py-2 border-white md:px-2 rounded-md py-4 md:py-0 block no-underline hover:text-custom-text cursor-pointer transition-all duration-300 flex"
+                >Comprar boletos
+                <img class="w-8" src="img/money.png" alt="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="bg-stone-800 py-3">
+      <div class="text-white text-center border-2 border-white m-8">
+        <div class="flex justify-center items-center mt-3 uppercase">
+          <p class="md:text-6xl md:mr-7 text-3xl">Primer sorteo en efectivo</p>
+          <img
+            class="w-12 m-2 md:w-32"
+            width="100px"
+            src="img/Dimero.png"
+            alt=""
+          />
+        </div>
+        <div class="uppercase m-4 font-bold">
+          <p class="md:text-3xl text-lg">
+            Primer premio "ganador" $50,000 pesos
+          </p>
+          <br />
+          <p class="md:text-3xl text-lg">
+            segundo premio "ganador" $5,000 pesos
+          </p>
+          <br />
+          <p class="md:text-3xl text-lg">
+            tercer premio "ganador" $3,000 pesos
+          </p>
+          <br />
+          <p class="md:text-3xl text-lg mb-4">
+            ganadores del 4 al 10 lugar $1,000
+          </p>
+        </div>
+        <div class="mt-20">
+          <button
+            id="boletosCompra"
+            class="bg-yellow-500 md:px-16 px-10 py-4 text-lg rounded md:py-4 mb-10 md:text-3xl uppercase font-bold text-stone-900 hover:bg-yellow-700 hover:text-white transition-all duration-300"
+          >
+            Comprar Boletos
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="flex justify-center items-center">
+        <div class="m-8 w-1/2  overflow-hidden" id="image">
+ 
+      </div>
+    </div> -->
+
+    <div class="md:slider-container hidden md:block">
+      <div class="slider position m-3 ml-[642px]"></div>
+    </div>
+    <div class="mb-7 bg-custom-boletos py-2 flex justify-center">
+      <div class="max-w-[700px]">
+        <!-- Ancho fijo de 600px, ajusta el valor según tus necesidades -->
+        <div class="flex justify-center items-center">
+          <div class="block">
+            <div class="flex items-center justify-center">
+              <i
+                class="fa fa-caret-down mr-2"
+                style="
+                  font-size: 100px;
+                  color: white;
+                  text-shadow: 2px 2px 4px #000000;
+                "
+              ></i>
+              <p class="text-white md:text-3xl text-lg uppercase text-center">
+                Boletos desde $30 pesos
+              </p>
+              <i
+                class="fa fa-caret-down ml-2"
+                style="
+                  font-size: 100px;
+                  color: white;
+                  text-shadow: 2px 2px 4px #000000;
+                "
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-7 mt-5 bg-custom-boletos py-2 flex justify-center">
+      <div class="max-w-[700px]">
+        <!-- Ancho fijo de 600px, ajusta el valor según tus necesidades -->
+        <div class="flex justify-center items-center">
+          <div class="block">
+            <div class="flex items-center justify-center">
+              <i
+                class="fa fa-caret-down mr-2"
+                style="
+                  font-size: 100px;
+                  color: white;
+                  text-shadow: 2px 2px 4px #000000;
+                "
+              ></i>
+              <p class="text-white md:text-3xl text-lg uppercase text-center">
+                HAZ CLICK ABAJO EN TU boleto para seleccionarlo
+              </p>
+              <i
+                class="fa fa-caret-down ml-2"
+                style="
+                  font-size: 100px;
+                  color: white;
+                  text-shadow: 2px 2px 4px #000000;
+                "
+              ></i>
+            </div>
+            <div
+              class="flex flex-col items-center justify-center hidden"
+              id="comprarBoletos"
+            >
+              <p class="text-red-500 md:text-2xl mb-3 text-center" id="warning">
+                Si deseas eliminar algún boleto vuélvelo a presionarlo.
+              </p>
+              <div class="flex flex-wrap justify-center" id="misBoletos"></div>
+              <div class="flex flex-wrap">
+                <button
+                  class="w-42 flex justify-center items-center bg-custom-navBg mb-2 font-bold py-2 px-8 rounded-md text-white text-lg mt-2 font-sans cursor-pointer hover:text-gray-800 transition-text-white duration-300 hover:bg-custom-text"
+                  id="comprar"
+                >
+                  Comprar Para Mi
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-stone-800">
+      <p
+        class="text-center md:text-5xl text-3xl text-white font-semibold py-3"
+        id="boletosAqui"
+      >
+        Boletos aqui abajo
+      </p>
+      <div class="flex justify-center">
+        <div
+          class="overflow-hidden overflow-y-scroll w-4/5 h-72 bg-white mb-5 rounded-md"
+        >
+          <div class="grid md:grid-cols-8 grid-cols-5" id="boletos">
+            <!-- <button data-id=${boleto._id} class="bg-yellow-500 m-2 md:px-16 md:px-10  py-2 rounded-md hover:bg-yellow-700 seleccionar" >5000</button>
+     -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="modal"
+      class="fixed inset-0 flex items-center justify-center hidden"
+    >
+      <div
+        class="bg-custom-header rounded-lg pr-2 pl-2 w-[600px] md:h-[660px] h-[650px] border-black border"
+      >
+        <div class="flex justify-end mr-5">
+          <button id="cerrarModal" class="fa fa-times fa-2x mb-2 mt-2"></button>
+        </div>
+        <!-- Contenido del modal -->
+        <div id="modalFormulario">
+          <h2
+            class="md:text-3xl text-lg text-center font-bold mb-4 text-white border-2 p-2 rounded-md uppercase"
+          >
+            LLENA TUS DATOS Y apartalos
+          </h2>
+
+          <div class="flex items-center justify-center">
+            <div class="flex flex-wrap justify-center" id="modalBoletos"></div>
+          </div>
+        </div>
+        <form
+          class="max-w-md mx-auto p-8 rounded shadow-3xl border-2"
+          id="formulario"
+        >
+          <div id="warningNumero"></div>
+          <div class="mb-4 mt-2">
+            <label class="block mb-2 font-bold text-white" for="telefono"
+              >Telefono:</label
+            >
+            <input
+              onblur="validarLongitud()"
+              min="1"
+              class="w-full px-3 py-2 border border-gray-300 rounded sin-incrementador"
+              type="number"
+              id="telefono"
+              name="telefono"
+              placeholder="Ingrese su telefono"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block mb-2 font-bold text-white" for="nombre"
+              >Nombre:</label
+            >
+            <input
+              class="w-full px-3 py-2 border border-gray-300 rounded"
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Ingrese su nombre"
+              required
+            />
+          </div>
+
+          <div class="flex justify-end">
+            <button
+              class="w-42 flex justify-center items-center bg-custom-navBg font-bold py-2 px-8 rounded-md text-white text-lg mt-2 font-sans hover:bg-custom-text hover:text-black transition-all duration-300"
+              type="submit"
+              id="comprarboletosModal"
+            >
+              Apartar
+            </button>
+          </div>
+        </form>
+        <h2
+          class="md:text-2xl text-lg text-center font-bold text-white p-2 rounded-md"
+        >
+          ¡Al finalizar serás redirigido a whatsapp para enviar la información
+          de tu boleto!
+        </h2>
+        <h2
+          class="md:text-xl text-lg text-center font-bold text-red-500 p-2 rounded-md"
+        >
+          Tus boletos sólo duran 12 horas apartados.
+        </h2>
+      </div>
+    </div>
+
+    <footer class="mt-6">
+      <div
+        class="bg-custom-text text-white py-4 text-center text-xs md:text-xl"
+      >
+        <div class="bg-stone-800 py-3 text-stone-300">
+          <p>
+            ® Sorteos el <strong>pariente</strong> todos los derechos
+            reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js" type="module"></script>
+    <script src="validaciones.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
