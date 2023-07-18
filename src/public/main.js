@@ -1,4 +1,4 @@
-import { loadBoletos, onSelected  } from "./socket.js"
+import { loadBoletos, onSelected } from "./socket.js"
 import { renderBoletos,fillForm} from './ui.js'
 
 // onNewNote(appendNote)
@@ -7,6 +7,7 @@ import { renderBoletos,fillForm} from './ui.js'
 
 loadBoletos(renderBoletos)
 onSelected(fillForm)
+
 
 
 

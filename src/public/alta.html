@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registro de folios</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="main.css" />
+
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+      <table id="myTable" class="w-full bg-white shadow-md rounded">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="py-2 px-4 border-b text-left">Folio</th>
+            <th class="py-2 px-4 border-b text-left">Nombre</th>
+            <th class="py-2 px-4 border-b text-left">Telefono</th>
+            <th class="py-2 px-4 border-b text-left">Estado</th>
+            <th class="py-2 px-4 border-b text-left">Fecha y hora</th>
+            <th class="py-2 px-4 border-b text-left">Boletos</th>
+            <th class="py-2 px-4 border-b text-left">Accion</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    
+    <button id="logoutButton" class="bg-yellow-400 px-3 py-2 m-2 rounded text-lg hover:bg-yellow-600 poss ">Cerrar sesion</button>
+    <a href="verificados.html" id="logoutButton" class="bg-blue-400 px-3 py-2 m-2 rounded text-lg hover:bg-blue-600 pos ">Ir a Comprados</a>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script type="module" src="alta.js"></script>
+   
+  </body>
+</html>

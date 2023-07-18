@@ -12,7 +12,13 @@ const schema = new Schema(
             type: String,
         },
         boletos: {
-            type: [String] ,
+            type: [{}] ,
+        },
+        estado: {
+            type:String
+        },
+        fechaHora:{
+            type: String
         }
 
     },

@@ -79,3 +79,13 @@
   position: static;
   transform: translateX(-50%, -50%);
 }
+
+.poss{
+  position: absolute;
+  top: 1px;
+}
+
+.pos{
+  position: absolute;
+  top: 50px;
+}

@@ -1,46 +1,64 @@
 const socket = io();
 
-
-
-export const loadBoletos = (callback) =>{
-    socket.on("server:loadBoletos", callback);
+export const loadBoletos = (callback) => {
+  socket.on("server:loadBoletos", callback);
 };
 
-
 export const getBoletoById = (id) => {
-    socket.emit("client:getBoleto", id);
+  socket.emit("client:getBoleto", id);
 };
 
 export const onSelected = (callback) => {
-    socket.on("server:selectedBoleto",callback);
+  socket.on("server:selectedBoleto", callback);
 };
 
 export const updateBoleto = (id) => {
-    socket.emit("client:updateBoleto",{
-        _id: id,
-        activo:true
-    });
+  socket.emit("client:updateBoleto", {
+    _id: id,
+    activo: true,
+  });
 };
 
 export const updateBoletoFalse = (id) => {
-    console.log(id)
-    socket.emit("client:updateBoletoFalse",{
-        _id: id,
-        activo:false
-    });
+
+  socket.emit("client:updateBoletoFalse", {
+    _id: id,
+    activo: false,
+  });
 };
 
-export const insertFolio = (telefono, nombre, folio, boletos) => {
-    socket.emit("client:newFolio", {
-        telefono: telefono,
-        nombre: nombre,
-        folio: folio,
-        boletos: boletos
-    });
-    console.log(boletos)
+export const deleteComprado = (id) => {
+
+  socket.emit("client:deleteComprado", {
+    id: id,
+  });
+};
+
+export const insertFolio = (telefono, nombre, folio, boletos,estado, fechaHora) => {
+  socket.emit("client:newFolio", {
+    telefono: telefono,
+    nombre: nombre,
+    folio: folio,
+    boletos: boletos,
+    estado: estado,
+    fechaHora: fechaHora,
+  });
+
 };
 
 
+export const inserVerificado = (telefono, nombre, folio, boletos, estado, fechaHora, fechaComprado) => {
+  socket.emit("client:newVeri", {
+    telefono: telefono,
+    nombre: nombre,
+    folio: folio,
+    boletos: boletos,
+    estado: estado,
+    fechaHora: fechaHora,
+    fechaComprado:fechaComprado
+  });
+
+};
 
 
 

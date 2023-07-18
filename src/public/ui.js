@@ -4,11 +4,11 @@ import {
   updateBoletoFalse,
   insertFolio,
 } from "./socket.js";
+
 const boletosList = document.querySelector("#boletos");
 const prueba = document.getElementById("comprarBoletos");
-let boletosLocal;
 
-let saveId = "";
+let boletosLocal;
 
 export const renderBoletos = (boletos) => {
   boletosList.innerHTML = "";
@@ -16,12 +16,34 @@ export const renderBoletos = (boletos) => {
 };
 
 const boletotoUi = (boleto) => {
-  const button = document.createElement("button");
+  
+  const botones = document.querySelectorAll(".seleccionar");
+  // Filtrar los botones deshabilitados
+  var botonesDeshabilitados = Array.from(botones).filter(function (boton) {
+    return boton.disabled;
+  });
+
+  // Obtener el contador de botones deshabilitados
+  var contadorDeshabilitados = botonesDeshabilitados.length;
+
+  let desa = document.getElementById("alertaNuevo")
+  let prue = document.getElementById("Perro")
+
+
+  if(contadorDeshabilitados === 499){
+
+    desa.classList.remove("hidden")
+    prue.classList.add("hidden")
+  }else{
+    prue.classList.remove("hidden")
+    desa.classList.add("hidden")
+    const button = document.createElement("button");
   button.innerHTML = `
-   <button data-id=${boleto._id} class="bg-yellow-500 m-2 md:px-16 md:w-40 w-12 md:px-10 py-2 rounded-md hover:bg-yellow-700 seleccionar" >${boleto.numero}</button>
+   <button data-id=${boleto._id} class="bg-yellow-500 m-2 md:px-16 md:w-40 w-12 md:px-10 py-2 rounded-md hover:bg-yellow-700 seleccionar " >${boleto.numero}</button>
 
     `;
   // <button data-id=${boleto._id} class="bg-yellow-500 m-2 md:px-16 md:px-10  py-2 rounded-md hover:bg-yellow-700 seleccionar" >${boleto.numero}</button>
+
 
   const btnSelect = button.querySelector(".seleccionar");
   btnSelect.disabled = boleto.activo;
@@ -43,9 +65,13 @@ const boletotoUi = (boleto) => {
   });
 
   return button;
+
+  }
+
+  
 };
 
-export let boletosCar = [];
+let boletosCar = [];
 const boletosComprar = (numero, id) => {
   const data = {
     numero: numero,
@@ -133,43 +159,77 @@ cerrarModalBtn.addEventListener("click", () => {
   modalBoletos.innerHTML = ``;
   modal.classList.add("hidden");
   p.innerHTML = "";
-  const telefono = document.getElementById("telefono").value = "";
-  const nombre = document.getElementById("nombre").value ="";
-
+  const telefono = (document.getElementById("telefono").value = "");
+  const nombre = (document.getElementById("nombre").value = "");
 });
 
-function enviarMensaje(folio) {
-  const numeroTelefono = "3319764003"; // Reemplaza con el número de teléfono al que deseas enviar el mensaje
-  const mensaje = "¡Hola, soy un mensaje desde mi página web!" + folio; // Reemplaza con el mensaje que deseas enviar
-
-  const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(
-    mensaje
-  )}`;
-  window.open(url);
-}
 const comprarboletosModal = document.getElementById("comprarboletosModal");
 comprarboletosModal.addEventListener("click", (e) => {
+  e.preventDefault();
+
   const telefono = document.getElementById("telefono").value;
   const nombre = document.getElementById("nombre").value;
   const formulario = document.getElementById("formulario");
-  if (telefono !== "" && nombre !== "") {
+  const estado = document.getElementById("estados-select").value;
+
+  //
+
+  if (telefono !== "" && nombre !== "" && estado !== "") {
     const folio = generarFolio();
     enviarMensaje(folio);
 
-    const boletos = [];
+    // Obtener la fecha y hora actual
+    let fechaHoraActual = new Date();
+
+    // Obtener los componentes de la fecha y hora
+    let año = fechaHoraActual.getFullYear();
+    let mes = fechaHoraActual.getMonth() + 1; // Los meses comienzan en 0, por lo que se suma 1
+    let dia = fechaHoraActual.getDate();
+    let hora = fechaHoraActual.getHours();
+    let minutos = fechaHoraActual.getMinutes();
+    let segundos = fechaHoraActual.getSeconds();
+
+    // Formatear la fecha y hora como una cadena
+    let fechaHoraFormateada =
+      año + "-" + mes + "-" + dia + " " + hora + ":" + minutos + ":" + segundos;
+
+
+    let boletos = [];
+    let boletosPus = [];
 
     boletosCar.forEach((element) => {
-      boletos.push(String(element.numero));
+      boletos = {
+        numero: element.numero,
+        id: element.id,
+      };
+      boletosPus.push(boletos);
     });
 
-    insertFolio(telefono, nombre, folio, boletos);
+
+
+    insertFolio(
+      telefono,
+      nombre,
+      folio,
+      boletosPus,
+      estado,
+      fechaHoraFormateada
+    );
     boletosCar = [];
     sessionStorage.clear();
     formulario.reset();
 
     location.reload();
-  }else{
-    console.log("Holaaa")
+  } else {
+    const p = document.getElementById("warningNumero");
+
+    p.innerHTML =
+      "<p class='text-center text-xl text-white bg-red-800 py-2 px-2 rounded-md font-bold'>Llena todos los campos</p>";
+
+    setTimeout(() => {
+      const p = document.getElementById("warningNumero");
+      p.innerHTML = "";
+    }, 5000);
   }
 });
 
@@ -254,5 +314,36 @@ const generarFolio = (telefono) => {
 // };
 
 export const fillForm = (note) => {
-  console.log(note);
+
 };
+
+function enviarMensaje(folio) {
+  const nombre = document.getElementById("nombre").value;
+
+  let boletosString = [];
+  boletosCar.forEach((element) => {
+    boletosString.push(element.numero);
+  });
+
+  const arrayString = boletosString.join(", ");
+
+  const numeroTelefono = "3320291811"; // Reemplaza con el número de teléfono al que deseas enviar el mensaje
+  const mensaje =
+    "¡Hola, mi nombre es " +
+    nombre +
+    " y quiero participar en el sorteo, por ello quiero apartar estos boletos:  " +
+    arrayString +
+    ", Este es mi número de folio: " +
+    "*" +
+    folio +
+    "*"; // Reemplaza con el mensaje que deseas enviar
+
+  const url = `
+  https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
+
+  // const link = `https://api.whatsapp.com/send?phone=${numeroTelefono}&text=${encodeURIComponent(
+  //   mensaje
+  // )}`;
+
+  window.open(url);
+}

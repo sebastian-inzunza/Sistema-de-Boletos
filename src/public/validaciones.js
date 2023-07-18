@@ -6,7 +6,7 @@ function validarLongitud() {
     if (valor.length > 10 || valor.length < 10) {
       campo.value = "";
       p.innerHTML =
-        "<p class='text-center text-2xl text-white bg-red-800 py-2 px-3 rounded-md font-bold'>Escribe solo 10 digitos</p>";
+        "<p class='text-center text-xl text-white bg-red-800 py-2 px-2 rounded-md font-bold'>Escribe solo 10 digitos</p>";
     
         setTimeout(() => {
             const p = document.getElementById("warningNumero");
